@@ -13,6 +13,8 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
     @PostMapping("/student/signUp")
+
+
     public void saveStudent(@RequestBody Student student){
 
         Student fstudent = getStudentById(student.getRollNo());
