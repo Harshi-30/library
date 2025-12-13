@@ -23,13 +23,13 @@ public class BookController {
     @GetMapping("/books/{id}")
     public Book getBookById (@PathVariable("id") String id){
        List<Book> books = getBook();
-       Book c = null;
+       Book cBook = null;
        for(Book book:books){
            if(id.equals(book.getId()) ){
-               c = book;
+               cBook = book;
            }
        }
-       return c;
+       return cBook;
     }
 
     @GetMapping("/books")
