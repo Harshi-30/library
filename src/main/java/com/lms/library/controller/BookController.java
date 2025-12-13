@@ -24,7 +24,10 @@ public class BookController {
     public Book getBookById (@PathVariable("id") String id){
        List<Book> books = getBook();
        Book cBook = null;
+
        for(Book book:books){
+
+
            if(id.equals(book.getId()) ){
                cBook = book;
            }
