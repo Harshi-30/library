@@ -2,6 +2,7 @@ package com.lms.library.controller;
 
 import com.lms.library.model.Book;
 import com.lms.library.repository.BookRepository;
+import com.lms.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +14,13 @@ import java.util.List;
 public class BookController {
 
     @Autowired
+    private BookService bookService;
+    @Autowired
     private BookRepository bookRepository;
-
     @PostMapping("/books")
     public void saveBook(@RequestBody List<Book> books ){
-        bookRepository.saveAll(books);
+
+        bookService.saveMethod(books);
     }
 
     @GetMapping("/books/{id}")
