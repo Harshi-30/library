@@ -68,8 +68,7 @@ public class Student {
         return rollNo;
     }
 
-    public void setRollNo
-            (String rollNo) {
+    public void setRollNo(String rollNo) {
         this.rollNo = rollNo;
     }
 }

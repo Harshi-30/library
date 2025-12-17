@@ -10,32 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@RestController
+@RestController //use for web
 public class BookController {
 
     @Autowired
     private BookService bookService;
     @Autowired
     private BookRepository bookRepository;
+
     @PostMapping("/books")
     public void saveBook(@RequestBody List<Book> books ){
-
         bookService.saveMethod(books);
     }
 
     @GetMapping("/books/{id}")
     public Book getBookById (@PathVariable("id") String id){
-       List<Book> books = getBook();
-       Book cBook = null;
-
-       for(Book book:books){
-
-
-           if(id.equals(book.getId()) ){
-               cBook = book;
-           }
-       }
-       return cBook;
+       return bookService.getBookById(id);
     }
 
     @GetMapping("/books")
