@@ -30,27 +30,10 @@ public class BookController {
 
     @GetMapping("/books")
     public List<Book> getBooks (){
-        System.out.println("inside /books");
-        List<Book> books = getBook();
-        return books;
-    }
-    private List<Book> getBook(){
-        return bookRepository.findAll();
+        return bookService.getBooks();
     }
     @GetMapping("/bookByCount/{count}")
     public List<Book> getBookByCount(@PathVariable("count") int count){
-
-        if (count < 0){
-            System.out.println("count of books should be positive");
-            throw new RuntimeException("count of books should be positive");
-        }
-
-        List<Book> result = new ArrayList<>();
-        for(Book cbook : getBook()){
-            if(count == cbook.getCount()){
-                result.add(cbook);
-            }
-        }
-        return result;
+        return bookService.getBookByCount(count);
     }
 }

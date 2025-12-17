@@ -11,14 +11,17 @@ import java.util.List;
 //@Service
 public class BookService {
     private BookRepository bookRepo;
+
+
     @Autowired
     private LoggingService loggingService;
-
     @Autowired
     public void setBookRepo(BookRepository bookRepo){
     loggingService.log("inside constracter");
         this.bookRepo = bookRepo;
     }
+
+
     public List<Book> saveMethod(List<Book> books){
         List<Book> finalBook = new ArrayList<>();
         for(Book book : books){
@@ -27,6 +30,22 @@ public class BookService {
             }
         }
         return bookRepo.saveAll(finalBook);
+    }
+    public List<Book>getBooks(){
+        return bookRepo.findAll();
+    }
+    public List<Book>getBookByCount(int count){
+        if (count < 0){
+            System.out.println("count of books should be positive");
+            throw new RuntimeException("count of books should be positive");
+        }
+        List<Book>countBook = new ArrayList<>();
+        for(Book book:bookRepo.findAll()){
+            if(book.getCount() == count){
+                countBook.add(book);
+            }
+        }
+        return countBook;
     }
     public Book getBookById(String id) {
         List<Book> books = bookRepo.findAll();
